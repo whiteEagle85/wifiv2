@@ -71,15 +71,12 @@ namespace UART_WiFi_V2 {
         sendAtCmd(`AT+CIPSTART="${protoStr}","${ip}",${port}`)       
         result = waitAtResponse("OK", "ERROR", "ALREADY CONNECTED", 2000)
 
-        sendAtCmd(`AT+CIPSTART="${protoStr}","${ip}",${port}`)       
-        result = waitAtResponse("OK", "ERROR", "ALREADY CONNECTED", 2000)
-
         if (result == 1 || result == 3) {
-            sendAtCmd(`AT+CIPSEND=${message.length}`)    
+            sendAtCmd(`AT+CIPSEND="${message.length}"`)    
             result = waitAtResponse(">", "ERROR", "SEND FAIL", 3000)
 
             if (result == 1) {
-                serial.writeString("25")
+                serial.writeString(message)
                 waitAtResponse("SEND OK", "ERROR", "SEND FAIL", 3000)
             }
         }
