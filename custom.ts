@@ -34,7 +34,7 @@ namespace UART_WiFi_V2 {
 
         serial.redirect(txPin, rxPin, baudRate)
 
-        sendAtCmd("AT")
+        sendAtCmd("ATE0")
         result = waitAtResponse("OK", "ERROR", "None", 1000)
         if (result !== 1) return
 
@@ -72,7 +72,7 @@ namespace UART_WiFi_V2 {
         result = waitAtResponse("OK", "ERROR", "ALREADY CONNECTED", 2000)
 
         if (result == 1 || result == 3) {
-            sendAtCmd(`AT+CIPSEND="${message.length}"`)    
+            sendAtCmd(`AT+CIPSEND=${message.length}`)    
             result = waitAtResponse(">", "ERROR", "SEND FAIL", 3000)
 
             if (result == 1) {
