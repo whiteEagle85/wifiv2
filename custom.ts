@@ -21,7 +21,7 @@ namespace UART_WiFi_V2 {
     /**
      * Setup UART Wifi V2 to connect to wifi
      */
-    //% group="UART Wifi"
+    //% group="UART_WiFi_V2"
     //% block="setup Wifi|TX %txPin|RX %rxPin|baudrate %baudrate|ssid = %ssid|password = %passwd"
     //% txPin.defl=SerialPin.C17
     //% rxPin.defl=SerialPin.C16
@@ -55,7 +55,7 @@ namespace UART_WiFi_V2 {
      * Start Connection to UDP or TCP
      */
     //% weight=75
-    //% group="UART Wifi"
+    //% group="UART_WiFi_V2"
     //% block="setup Connection|Protokoll %protocol|Server %ip|Port %port"
     //% protocol.defl=Protocol.UDP
     //% ip.defl="10.254.10.185"
@@ -73,7 +73,7 @@ namespace UART_WiFi_V2 {
     /**
      * Close Connection to Wifi
      */
-    //% group="UART Wifi"
+    //% group="UART_WiFi_V2"
     //% block="Connection Close"
     export function endCon() {
         sendAtCmd(`AT+CIPCLOSE`)
@@ -83,7 +83,7 @@ namespace UART_WiFi_V2 {
     * Send Data via Wifi
     */
     //% weight=100
-    //% group="UART Wifi"
+    //% group="UART_WiFi_V2"
     //% block="Nachricht %message"
     //% message.defl=""
     export function sendData(message: string) {
@@ -123,7 +123,7 @@ namespace UART_WiFi_V2 {
     /**
      * Check if UART Wifi V2 is connected to Wifi
      */
-    //% group="UART Wifi"
+    //% group="UART_WiFi_V2"
     //% block="Wifi OK?"
     export function wifiOK() {
         return isWifiConnected
@@ -133,7 +133,7 @@ namespace UART_WiFi_V2 {
     * Wait AT response from UART Wifi V2"
     */
     //% block="wait AT response|t1 %target1|t2 %target2|t3%target3|with %timeout milliseconds"
-    //% group="UART Wifi"
+    //% group="UART_WiFi_V2"
     //% target1.defl="t1"
     //% target2.defl="t2"
     //% target3.defl="t3"
@@ -158,8 +158,7 @@ namespace UART_WiFi_V2 {
     /*function sendAtCmd(cmd: string) {
         serial.writeString(cmd + "\u000D\u000A")
     }*/
-    
-    function sendAtCmd(cmd: string) {
+        function sendAtCmd(cmd: string) {
         serial.writeString(cmd + "\r\n")
     }
 
