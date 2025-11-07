@@ -53,10 +53,9 @@ namespace UART_WiFi_V2 {
 
     /**
      * Start Connection to Wifi
-     * 
      */
     //% group="UART Wifi"
-    //% block="Daten senden|Protokoll %protocol|Server %ip|Port %port"
+    //% block="Start Connection|Protokoll %protocol|Server %ip|Port %port"
     //% protocol.defl=Protocol.UDP
     //% ip.defl="10.254.10.185"
     //% port.defl="64289"
@@ -73,13 +72,14 @@ namespace UART_WiFi_V2 {
     /**
      * Close Connection to Wifi
      */
+    //%Close Connection
     export function endCon() {
         sendAtCmd(`AT+CIPCLOSE`)
     }
 
     /**
-      * Send Data via Wifi
-      */
+    * Send Data via Wifi
+    */
     //% weight=100
     //% group="UART Wifi"
     //% block="Text %message"
