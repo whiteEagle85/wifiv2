@@ -73,7 +73,8 @@ namespace UART_WiFi_V2 {
     /**
      * Close Connection to Wifi
      */
-    //%Close Connection
+    //% group="UART Wifi"
+    //% block="Connection Close"
     export function endCon() {
         sendAtCmd(`AT+CIPCLOSE`)
     }
