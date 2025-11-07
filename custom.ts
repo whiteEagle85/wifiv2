@@ -55,7 +55,7 @@ namespace UART_WiFi_V2 {
      * Start Connection to UDP or TCP
      */
     //% group="UART Wifi"
-    //% block="setup Connection\nProtokoll %protocol\nServer %ip\nPort %port"
+    //% block="setup Connection|Protokoll %protocol|Server %ip|Port %port|Protokoll %protocol|Server %ip|Port %port"
     //% protocol.defl=Protocol.UDP
     //% ip.defl="10.254.10.185"
     //% port.defl="64289"
