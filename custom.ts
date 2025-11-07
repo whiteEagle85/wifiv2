@@ -10,6 +10,7 @@ enum Protocol {
 }
 
 let isWifiConnected = false;
+let result = 0
 
 /**
  * Functions for ESP8285 module.
@@ -50,26 +51,42 @@ namespace UART_WiFi_V2 {
         }
     }
 
-    
     /**
-      * Send Data via Wifi
-      */
-    //% weight=100
+     * Start Connection to Wifi
+     * 
+     */
     //% group="UART Wifi"
-    //% block="Daten senden|Protokoll %protocol|Server %ip|Port %port|Text %message"
+    //% block="Daten senden|Protokoll %protocol|Server %ip|Port %port"
     //% protocol.defl=Protocol.UDP
     //% ip.defl="10.254.10.185"
     //% port.defl="64289"
-    //% message.defl=""
-    export function sendData(protocol: Protocol, ip: string, port: string, message: string) {
-
-        let result = 0
+    export function startCon(protocol: Protocol, ip: string, port: string) {
+        
         let protoStr = protocolToString(protocol)
 
         if (!isWifiConnected) return
 
         sendAtCmd(`AT+CIPSTART="${protoStr}","${ip}",${port}`)       
         result = waitAtResponse("OK", "ERROR", "ALREADY CONNECTED", 2000)
+    }
+
+    /**
+     * Close Connection to Wifi
+     */
+    export function endCon() {
+        sendAtCmd(`AT+CIPCLOSE`)
+    }
+
+    /**
+      * Send Data via Wifi
+      */
+    //% weight=100
+    //% group="UART Wifi"
+    //% block="Text %message"
+    //% message.defl=""
+    export function sendData(message: string) {
+
+        if (!isWifiConnected) return
 
         if (result == 1 || result == 3) {
             sendAtCmd(`AT+CIPSEND=${message.length}`)    
@@ -79,9 +96,7 @@ namespace UART_WiFi_V2 {
                 serial.writeString(message)
                 waitAtResponse("SEND OK", "ERROR", "SEND FAIL", 3000)
             }
-        }
-
-        sendAtCmd(`AT+CIPCLOSE`)
+        } 
     }
 
     /**
