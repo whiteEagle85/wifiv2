@@ -99,6 +99,7 @@ namespace UART_WiFi_V2 {
                 waitAtResponse("SEND OK", "ERROR", "SEND FAIL", 3000)
             }
         } 
+        basic.pause(2000)
     }
 
     /**
