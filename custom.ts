@@ -102,6 +102,24 @@ namespace UART_WiFi_V2 {
         basic.pause(2000)
     }
 
+   /**
+     * Check ReceiveData
+     */
+    export function receive_data() {
+        sendAtCmd("AT+CIPRECVDATA?")
+        let antwort = waitAtResponse("OK", "ERROR", "", 1000)
+        
+        if (antwort.includes("+CIPRECVDATA")) {
+            let datenStart = antwort.indexOf(":")
+            if (datenStart != -1) {
+                let daten = antwort.substr(datenStart + 1).trim()
+                return daten
+            }
+        }
+
+        return ""
+    }
+
     /**
      * Check if UART Wifi V2 is connected to Wifi
      */
