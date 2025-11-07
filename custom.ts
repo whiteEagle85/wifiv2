@@ -52,13 +52,15 @@ namespace UART_WiFi_V2 {
     }
 
     /**
-     * Start Connection to Wifi
+     * Setup UART Wifi V2 to connect to wifi
      */
     //% group="UART Wifi"
-    //% block="Start Connection|Protokoll %protocol|Server %ip|Port %port"
-    //% protocol.defl=Protocol.UDP
-    //% ip.defl="10.254.10.185"
-    //% port.defl="64289"
+    //% block="setup Wifi|TX %txPin|RX %rxPin|baudrate %baudrate|ssid = %ssid|password = %passwd"
+    //% txPin.defl=SerialPin.C17
+    //% rxPin.defl=SerialPin.C16
+    //% baudRate.defl=BaudRate.BaudRate115200
+    //% ssid.defl="r332"
+    //% passwd.defl="123456789"
     export function startCon(protocol: Protocol, ip: string, port: string) {
         
         let protoStr = protocolToString(protocol)
@@ -82,7 +84,7 @@ namespace UART_WiFi_V2 {
     */
     //% weight=100
     //% group="UART Wifi"
-    //% block="Text %message"
+    //% block="Nachricht %message"
     //% message.defl=""
     export function sendData(message: string) {
 
