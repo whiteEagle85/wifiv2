@@ -104,7 +104,8 @@ namespace UART_WiFi_V2 {
 
    /**
      * Check ReceiveData
-     */
+    */
+    //% group="UART_WiFi_V2"
     export function receive_data() {
         sendAtCmd("AT+CIPRECVDATA?")
         let antwort = waitAtResponse("OK", "ERROR", "", 1000)
