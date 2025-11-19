@@ -1,25 +1,12 @@
 {
-    "name": "WIFIV2",
-    "description": "",
-    "dependencies": {
-        "core": "*",
-        "v2": "*"
-    },
-    "files": [
-        "main.blocks",
-        "main.ts",
-        "README.md",
-        "custom.ts"
-    ],
-    "testFiles": [
-        "test.ts"
-    ],
-    "targetVersions": {
-        "target": "8.1.5",
-        "targetId": "calliopemini"
-    },
-    "supportedTargets": [
-        "calliopemini"
-    ],
-    "preferredEditor": "tsprj"
+  "name": "wifiv2",
+  "description": "WiFi Erweiterung für Calliope mini",
+  "dependencies": {
+    "core": "*"
+  },
+  "files": [
+    "main.ts"
+  ],
+  "testFiles": [],
+  "target": "calliopemini"
 }
