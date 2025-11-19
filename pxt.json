@@ -1,6 +1,6 @@
 {
     "name": "wifiV2",
-    "description": "",
+    "description": "WiFi Erweiterung für Calliope mini",
     "dependencies": {
         "core": "*",
         "v2": "*"
