@@ -79,48 +79,7 @@ namespace UART_WiFi_V2 {
         sendAtCmd(`AT+CIPCLOSE`)
     }
 
-    /**
-    * Send Data via Wifi
-    */
-    //% weight=100
-    //% group="UART_WiFi_V2"
-    //% block="Nachricht %message"
-    //% message.defl=""
-    export function sendData(message: string) {
-
-        if (!isWifiConnected) return
-
-        if (result == 1 || result == 3) {
-            sendAtCmd(`AT+CIPSEND=${message.length}`)    
-            result = waitAtResponse(">", "ERROR", "SEND FAIL", 3000)
-
-            if (result == 1) {
-                serial.writeString(message)
-                waitAtResponse("SEND OK", "ERROR", "SEND FAIL", 3000)
-            }
-        } 
-        basic.pause(2000)
-    }
-
-   /**
-     * Check ReceiveData
-    */
-    //% group="UART_WiFi_V2"
-    export function receive_data() {
-        sendAtCmd("AT+CIPRECVDATA?")
-        let antwort = waitAtResponse("OK", "ERROR", "", 1000)
-        
-        if (antwort.includes("+CIPRECVDATA")) {
-            let datenStart = antwort.indexOf(":")
-            if (datenStart != -1) {
-                let daten = antwort.substr(datenStart + 1).trim()
-                return daten
-            }
-        }
-
-        return ""
-    }
-
+    
     /**
      * Check if UART Wifi V2 is connected to Wifi
      */
