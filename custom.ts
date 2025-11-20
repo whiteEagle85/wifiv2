@@ -53,26 +53,12 @@ namespace UART_WiFi_V2 {
 
     
     /**
-
-
     * Send Data via Wifi
-
-
     */
-
-
     //% weight=100
-
-
     //% group="UART_WiFi_V2"
-
-
     //% block="Nachricht %message"
-
-
     //% message.defl=""
-
-
     export function sendData(message: string) {
 
         if (!isWifiConnected) return
