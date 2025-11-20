@@ -51,6 +51,44 @@ namespace UART_WiFi_V2 {
         }
     }
 
+    
+    /**
+
+
+    * Send Data via Wifi
+
+
+    */
+
+
+    //% weight=100
+
+
+    //% group="UART_WiFi_V2"
+
+
+    //% block="Nachricht %message"
+
+
+    //% message.defl=""
+
+
+    export function sendData(message: string) {
+
+        if (!isWifiConnected) return
+        if (result == 1 || result == 3) {
+
+            sendAtCmd(`AT+CIPSEND=${message.length}`)    
+            result = waitAtResponse(">", "ERROR", "SEND FAIL", 3000)
+
+            if (result == 1) {
+                serial.writeString(message)
+                waitAtResponse("SEND OK", "ERROR", "SEND FAIL", 3000)
+            }
+        } 
+        basic.pause(2000)
+    }
+
     /**
      * Start Connection to UDP or TCP
      */
